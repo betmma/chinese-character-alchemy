@@ -7,14 +7,12 @@
   <link rel="stylesheet" href="./main.css">
   <link rel="shortcut icon" href="./asset/images/favicon.ico">
   <script src="./dist/index.js" type="module"></script>
-  <title>汉字炼金术 - Chinese Character Alchemy</title>
+  <title>Chinese Character Alchemy</title>
 </head>
 <body>
-  <script src="chs.js"></script>
-  <script src="core.js"></script>
   <div id="game-canvas-wrapper">
     <canvas id="game-canvas">
-  
+
     </canvas>
   </div>
   <div id="list">
@@ -25,13 +23,13 @@
       <!-- List items here -->
     </div>
   </div>
-  <div id="save-space" hover-info="保存当前工作区">
+  <div id="save-space" hover-info="Save current workspace">
     S
   </div>
-  <div id="gold-toggle" hover-info="隐藏完成的字符" onclick="this.classList.toggle('activated')">
+  <div id="gold-toggle" hover-info="Hide completed characters" onclick="this.classList.toggle('activated')">
     G
   </div>
-  <div id="info" hover-info="+ 如果你是第一次玩这个游戏，你可能需要等待 2 分钟~加载所有数据和字体&#10;+ 你可以合并 2~5 个角色来创建一个新角色&#10;+ 每 5 个新角色，一个等级 1 角色将被解锁&#10;+右击删除物品&#10;+滚轮点击分解角色&#10;+双击复制物品&#10;+有4000多个字符...试着找到它们！">
+  <div id="info" hover-info="+ First load can take a moment while data and fonts load&#10;+ Merge 2-5 characters to create a new character&#10;+ Every 5 new characters unlocks a tier 1 character&#10;+ Right-click deletes an item&#10;+ Middle-click decomposes a character&#10;+ Double-click duplicates an item&#10;+ There are thousands of characters to discover">
     ?
   </div>
   <div id="collection-toggle" onclick="document.getElementById('collections').classList.toggle('hidden')">
@@ -39,7 +37,7 @@
   </div>
   <div id="collections" class="hidden">
     <div id="collection-list">
-  
+
     </div>
     <div id="collection-display-wrapper">
       <div id="collection-display">
@@ -49,22 +47,5 @@
       </div>
     </div>
   </div>
-<!--客服 开始-->
-<script src="//g8hh.github.io/static/js/jquery.min.js"></script>
-<link rel="stylesheet" href="//g8hh.github.io/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
-<script src="//g8hh.github.io/static/js/kf.js"></script>
-<!-- 客服 结束 -->
-<!--站长统计-->
-<div style="display: none"><script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?f237591d5976f87ca2e06b38c3658d9c";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
-  </script>
-  
-      </div>
 </body>
 </html>
