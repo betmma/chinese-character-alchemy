@@ -20,19 +20,31 @@ export default class GameFieldItem {
             s1 + y1 > y2;
         return isCollision;
     }
+    hasSameCharacters(a, b) {
+        if (a.length !== b.length)
+            return false;
+        const remaining = [...b];
+        for (const character of a) {
+            const idx = remaining.indexOf(character);
+            if (idx === -1)
+                return false;
+            remaining.splice(idx, 1);
+        }
+        return remaining.length === 0;
+    }
     mergeWith(items) {
         const parents = this.chineseCharacter.parents;
         const crafted = [];
         let totalMerged = [];
         for (const parent of parents) {
             const shapes = parent.shapes;
-            const merged = [this, ...items.slice(0, Math.max(1, shapes.length - 1))];
+            const merged = [this, ...items.slice(0, shapes.length - 1)];
             const toCheck = merged.map(item => item.chineseCharacter);
-            const canMake = shapes.every(shape => toCheck.includes(shape)) && toCheck.every(shape => shapes.includes(shape));
+            const canMake = this.hasSameCharacters(shapes, toCheck);
             if (canMake) {
                 crafted.push(parent);
                 totalMerged.push(...merged);
-                totalMerged = [...new Set(merged)];
+                totalMerged = [...new Set(totalMerged)];
             }
         }
         if (crafted.length > 0)

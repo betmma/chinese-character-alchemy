@@ -26,6 +26,7 @@ export default class ChineseCharacter {
   }
 
   addParent(parent: ChineseCharacter) {
+    if (this._parents.includes(parent)) return;
     this._parents.push(parent);
   }
 

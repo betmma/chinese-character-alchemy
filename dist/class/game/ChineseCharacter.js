@@ -11,6 +11,8 @@ export default class ChineseCharacter {
         this._shapes.push(shape);
     }
     addParent(parent) {
+        if (this._parents.includes(parent))
+            return;
         this._parents.push(parent);
     }
     get shapes() {
