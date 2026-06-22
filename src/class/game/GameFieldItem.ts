@@ -33,17 +33,22 @@ export default class GameFieldItem {
     return isCollision;
   }
 
-  private hasSameCharacters(a: ChineseCharacter[], b: ChineseCharacter[]) {
-    if (a.length !== b.length) return false;
+  private getMergedItemsForRecipe(recipe: ChineseCharacter[], items: GameFieldItem[]) {
+    const needed = [...recipe];
+    const selectedIdx = needed.indexOf(this.chineseCharacter);
+    if (selectedIdx === -1) return null;
+    needed.splice(selectedIdx, 1);
 
-    const remaining = [...b];
-    for (const character of a) {
-      const idx = remaining.indexOf(character);
-      if (idx === -1) return false;
-      remaining.splice(idx, 1);
+    const remainingItems = [...items];
+    const merged = [this];
+    for (const character of needed) {
+      const itemIdx = remainingItems.findIndex(item => item.chineseCharacter === character);
+      if (itemIdx === -1) return null;
+      merged.push(remainingItems[itemIdx]);
+      remainingItems.splice(itemIdx, 1);
     }
 
-    return remaining.length === 0;
+    return merged;
   }
 
   mergeWith(items: GameFieldItem[]): [crafted: ChineseCharacter[], merged: GameFieldItem[]] | null {
@@ -51,14 +56,14 @@ export default class GameFieldItem {
     const crafted: ChineseCharacter[] = []; 
     let totalMerged: GameFieldItem[] = [];
     for (const parent of parents) {
-      const shapes = parent.shapes;
-      const merged = [this, ...items.slice(0, shapes.length-1)];
-      const toCheck = merged.map(item => item.chineseCharacter);
-      const canMake = this.hasSameCharacters(shapes, toCheck);
-      if (canMake) {
+      for (const recipe of parent.recipes) {
+        const merged = this.getMergedItemsForRecipe(recipe, items);
+        if (merged === null) continue;
+
         crafted.push(parent);
         totalMerged.push(...merged);
         totalMerged = [...new Set(totalMerged)];
+        break;
       }
     }
 

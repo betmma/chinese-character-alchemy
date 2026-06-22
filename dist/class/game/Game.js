@@ -12,7 +12,7 @@ export default class Game {
         const unlockedCount = this.list.unlocked.length;
         const chineseCharacters = this.list.chineseCharacters;
         const bases = chineseCharacters.filter(c => c.shapes.length === 0).sort((a, b) => b.parents.length - a.parents.length);
-        const unlockCount = Math.ceil(Math.max(0, unlockedCount - 10) / 5) + 10;
+        const unlockCount = Math.ceil(Math.max(0, unlockedCount - 10) / 5) + 2;
         for (let i = 0; i < unlockCount; i++) {
             const toUnlock = bases[i];
             if (!toUnlock)

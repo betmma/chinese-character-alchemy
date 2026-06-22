@@ -105,7 +105,7 @@ const tree = new Collection({
         ["松", "  ", "杏", "  ", "櫻", "  ", "桑", "  ", "柏", "  "],
     ]),
 });
-const birdCharacters = chineseCharacters.filter(c => c.glyph === "鳥" || c.shapes.some(c => c.glyph === "鳥")).map(c => c.glyph);
+const birdCharacters = chineseCharacters.filter(c => c.glyph === "鳥" || c.recipes.some(recipe => recipe.some(c => c.glyph === "鳥"))).map(c => c.glyph);
 const bird = new Collection({
     name: "Bird",
     hintCount: 3,
@@ -130,7 +130,8 @@ const elements = new Collection({
         ["  ", "  ", "  ", "錒", "釷", "鏷", "鈾", "錼", "鈽", "鋂", "鋦", "鉳", "鉲", "鑀", "鐨", "鍆", "鍩", "鐒"]
     ]),
 });
-const tierCollections = Array.from({ length: 8 }, (_, i) => {
+const maxTier = Math.max(...chineseCharacters.map(c => c.getTier()));
+const tierCollections = Array.from({ length: maxTier }, (_, i) => {
     const tier = i + 1;
     let collectionItems = chineseCharacters.filter(c => c.getTier() === tier);
     if (tier === 1)
@@ -139,7 +140,7 @@ const tierCollections = Array.from({ length: 8 }, (_, i) => {
     const size = Math.ceil(Math.sqrt(collectionItems.length));
     return new Collection({
         name: "Tier " + tier,
-        hintCount: tier === 1 ? Infinity : 8 - tier,
+        hintCount: tier === 1 ? Infinity : Math.max(0, maxTier - tier),
         items: itemsConverter(array2D.create(size, size, (x, y) => {
             const idx = x + y * size;
             return collectionItemsCharacters[idx] ?? null;

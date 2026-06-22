@@ -6,6 +6,10 @@
   font-family: "NotoSansSC";
   src: url("./asset/fonts/NotoSansSC/NotoSansSC-Medium.otf");
 }
+@font-face {
+  font-family: "BabelStoneHan";
+  src: url("./asset/fonts/BabelStoneHan/BabelStoneHan.ttf");
+}
 
 @keyframes absoluteAppearFromBottom {
   from {
@@ -21,7 +25,7 @@
   padding: 0;
 
   color: #fff;
-  font-family: "NanumGothic", "NotoSansSC", sans-serif;
+  font-family: "NanumGothic", "NotoSansSC", "BabelStoneHan", sans-serif;
   font-size: 1.6vmin;
 
   user-select: none;

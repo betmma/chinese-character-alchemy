@@ -17,7 +17,7 @@ export interface GameFieldOptions {
   fieldSaveData: FieldSavedata;
 }
 
-const fontFamilys = ["NanumGothic", "NotoSansSC"];
+const fontFamilys = ["NanumGothic", "NotoSansSC", "BabelStoneHan"];
 
 export default class GameField {
   private readonly game: Game;

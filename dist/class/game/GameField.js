@@ -2,7 +2,7 @@ import Field from "../util/Field.js";
 import GameFieldItem from "./GameFieldItem.js";
 import chineseCharacters from "../../data/chineseCharacters.js";
 import parseMouseButtons from "../../util/parseMouseButtons.js";
-const fontFamilys = ["NanumGothic", "NotoSansSC"];
+const fontFamilys = ["NanumGothic", "NotoSansSC", "BabelStoneHan"];
 export default class GameField {
     constructor(game, options) {
         this.game = game;
